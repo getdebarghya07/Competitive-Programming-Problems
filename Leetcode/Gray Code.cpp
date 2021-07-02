@@ -1,5 +1,5 @@
-//Time Complexity -> O(2^n)
-//Space Complexity -> O(n)
+//Time complexity O(2^n)
+//space complexity O(n)
 
 class Solution {
 public:
