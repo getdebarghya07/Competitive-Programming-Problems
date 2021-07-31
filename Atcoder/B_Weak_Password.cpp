@@ -272,32 +272,25 @@ int decode(char a){
 
 void solve()
 {
-    int n,m;cin>>n>>m;
-    int a[n],b[m];
-    fo(i,n)cin>>a[i];
-    fo(i,m)cin>>b[i];
-    int i = 0;
-    int j = 0;
-
-    sort(a,a+n);
-    sort(b,b+m);
-    int mn = INT_MAX;
-    
-    while(i < n && j < m){
-        if(a[i] > b[j]){
-            mn = min(mn , a[i]-b[j]);
-            j++;
-        }
-        else if(a[i] < b[j]){
-            mn = min(mn , b[j]-a[i]);
-            i++;
-        }
-        else{
-            cout<<0;
-            return;
+    string s;cin>>s;
+    int n = s.length();
+    set<char>st(s.begin(),s.end());
+    if(st.size()==1){
+        cout<<"Weak\n";
+        return;
+    }
+    int cnt = 0;
+    for (int i = 0; i < n-1; ++i)
+    {
+        if(decode(s[i+1]) - decode(s[i]) == 1 || decode(s[i+1]) - decode(s[i]) == -9){
+            cnt++;
         }
     }
-    cout<<mn;
+    if(cnt==3){
+        cout<<"Weak\n";
+        return;
+    }
+    cout<<"Strong\n";
 }
 
 int main()

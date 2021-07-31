@@ -257,47 +257,26 @@ ll phin(ll n)
 } //O(sqrt(N))
 void precision(int a) { cout << setprecision(a) << fixed; }
 /*--------------------------------------------------------------------------------------------------------------------------*/
-int decode(char a){
-    if(a=='0')return 0;
-    else if(a=='1')return 1;
-    else if(a=='2')return 2;
-    else if(a=='3')return 3;
-    else if(a=='4')return 4;
-    else if(a=='5')return 5;
-    else if(a=='6')return 6;
-    else if(a=='7')return 7;
-    else if(a=='8')return 8;
-    else return 9;
-}
 
 void solve()
 {
-    int n,m;cin>>n>>m;
-    int a[n],b[m];
-    fo(i,n)cin>>a[i];
-    fo(i,m)cin>>b[i];
-    int i = 0;
-    int j = 0;
-
-    sort(a,a+n);
-    sort(b,b+m);
-    int mn = INT_MAX;
-    
-    while(i < n && j < m){
-        if(a[i] > b[j]){
-            mn = min(mn , a[i]-b[j]);
-            j++;
-        }
-        else if(a[i] < b[j]){
-            mn = min(mn , b[j]-a[i]);
-            i++;
-        }
-        else{
-            cout<<0;
-            return;
-        }
+    int time[1500];
+    memset(time , 0, sizeof(time));
+    int n;cin>>n;
+    while(n--){
+        int h1,h2,m1,m2;
+        cin>>h1>>m1>>h2>>m2;
+        time[h1*60+m1]++;
+        time[h2*60+m2+1]--;
     }
-    cout<<mn;
+    //debug(time);
+    int ans = time[0];
+    for (int i = 1; i < 1500; ++i)
+    {
+        time[i] += time[i-1];
+        ans = max(ans , time[i]);
+    }
+    cout<<ans<<nl;
 }
 
 int main()

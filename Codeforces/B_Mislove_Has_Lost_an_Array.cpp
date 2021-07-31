@@ -257,47 +257,30 @@ ll phin(ll n)
 } //O(sqrt(N))
 void precision(int a) { cout << setprecision(a) << fixed; }
 /*--------------------------------------------------------------------------------------------------------------------------*/
-int decode(char a){
-    if(a=='0')return 0;
-    else if(a=='1')return 1;
-    else if(a=='2')return 2;
-    else if(a=='3')return 3;
-    else if(a=='4')return 4;
-    else if(a=='5')return 5;
-    else if(a=='6')return 6;
-    else if(a=='7')return 7;
-    else if(a=='8')return 8;
-    else return 9;
-}
+
 
 void solve()
 {
-    int n,m;cin>>n>>m;
-    int a[n],b[m];
-    fo(i,n)cin>>a[i];
-    fo(i,m)cin>>b[i];
-    int i = 0;
-    int j = 0;
-
-    sort(a,a+n);
-    sort(b,b+m);
-    int mn = INT_MAX;
-    
-    while(i < n && j < m){
-        if(a[i] > b[j]){
-            mn = min(mn , a[i]-b[j]);
-            j++;
+   int n,l,r;cin>>n>>l>>r;
+   int mx,mn;
+   mn = n - l + 1;
+   int t = l-1;
+   int mul = 1;
+   while(t--){
+        mn += mul*2;
+        mul *= 2;
+   }
+   mx = (n-r+1)*pow(2,r-1);
+   mul = 1;
+   if(r >= 2){
+        mx += 1;
+       t = r - 2;
+       while(t--){
+                mx += mul*2;
+                mul *= 2;
         }
-        else if(a[i] < b[j]){
-            mn = min(mn , b[j]-a[i]);
-            i++;
-        }
-        else{
-            cout<<0;
-            return;
-        }
-    }
-    cout<<mn;
+   }
+   cout<<mn<<" "<<mx;
 }
 
 int main()

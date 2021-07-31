@@ -1,19 +1,16 @@
-#include <bits/stdc++.h>
-using namespace std;
- 
-main()
-{
-	int t; cin>>t;
-	while (t--)
-	{
-		int n,p[5001]={},ans=0; 
-		cin>>n;
-		for (int i=1; i<=n; ++i)
-		{
-			int a; cin>>a;
-			if (!p[a]) p[a]=i;
-			if (i-p[a]>1) ans=1;
-		}
-		cout<<(ans? "YES\n": "NO\n");
-	}
-}
+//Input: s = "abaac", cost = [1,2,3,4,5]
+//Output: 3
+//Input: s = "aabaa", cost = [1,2,3,4,1]
+//Output: 2
+class Solution {
+public:
+     if(j-1 >= 0){
+                dp[i][j] = max(a[i+1][j] , max(dp[i+1][j-1] , dp[i+1][j+1])) + dp[i][j];
+            }
+            if(j-1 < 0){
+                dp[i][j] = max(a[i+1][j] ,  dp[i+1][j+1])+ dp[i][j];
+            }
+            else if(j+1 < c){
+                dp[i][j] = max(a[i+1][j] , max(dp[i+1][j-1] , dp[i+1][j+1])) + dp[i][j];
+            }
+};
